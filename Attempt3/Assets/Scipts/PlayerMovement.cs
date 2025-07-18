@@ -3,34 +3,23 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController _characterController;
-    private float MovementSpeed = 10, RotationSpeed = 5f, JumpForce = 10f, Gravity = -30f;
-    private float _rotationY;
-    private float _verticalVelocity;
+    public float MovementSpeed = 10, RotationSpeed = 50f;
 
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
     }
 
-    public void Move(Vector2 movementVector)
+    public void Move()
     {
-        Vector3 move = transform.forward * movementVector.y + transform.right * movementVector.x;
-        move = move * MovementSpeed * Time.deltaTime;
+        Vector3 move = transform.forward * MovementSpeed * Time.deltaTime;
         _characterController.Move(move);
 
-        _verticalVelocity = _verticalVelocity + Gravity * Time.deltaTime;
-        _characterController.Move(new Vector3(0, _verticalVelocity, 0) * Time.deltaTime);
     }
-    public void Rotate(Vector2 rotationVector)
+    public void Rotate(float rotationInput)
     {
-        _rotationY += rotationVector.x * RotationSpeed * Time.deltaTime;
-        transform.localRotation = Quaternion.Euler(0, _rotationY, 0);
+        float rotationAmount = rotationInput * RotationSpeed * Time.deltaTime;
+        transform.Rotate(0, rotationAmount, 0);
     }
-    public void Jump()
-    {
-        if (_characterController.isGrounded)
-        {
-            _verticalVelocity = JumpForce;
-        }
-    }
+
 }
