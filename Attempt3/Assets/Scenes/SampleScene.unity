@@ -679,9 +679,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterController: {fileID: 1222059508}
-  cannonballPrefab: {fileID: 919132149155446097, guid: 90bd476616d5b884ca5d5d2c8098056c, type: 3}
+  cannonballPrefab: {fileID: 8023280119884699888, guid: 1f21678b080ba0c4e9bc3729dbd7873c, type: 3}
   leftCannonSpawn: {fileID: 1603309238}
   rightCannonSpawn: {fileID: 1618955149}
+  shipTransform: {fileID: 1222059511}
   cannonForce: 500
 --- !u!4 &1278366094 stripped
 Transform:

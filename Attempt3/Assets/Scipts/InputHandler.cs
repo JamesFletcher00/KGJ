@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 public class InputHandler : MonoBehaviour
 {
     [SerializeField] private PlayerMovement CharacterController;
-    private InputAction _moveAction, _fireLeftCannon, _fireRightCannon;
+    private InputAction _moveAction, _fireLeftCannon, _fireRightCannon, _anchorToggle;
     [SerializeField] private GameObject cannonballPrefab;
     [SerializeField] private Transform leftCannonSpawn;
     [SerializeField] private Transform rightCannonSpawn;
@@ -16,12 +16,15 @@ public class InputHandler : MonoBehaviour
         _moveAction = InputSystem.actions.FindAction("Move");
         _fireLeftCannon = InputSystem.actions.FindAction("FireLeft");
         _fireRightCannon = InputSystem.actions.FindAction("FireRight");
+        _anchorToggle = InputSystem.actions.FindAction("ToggleAnchor");
 
         _fireLeftCannon.performed += ctx => FireLeft();
         _fireRightCannon.performed += ctx => FireRight();
+        _anchorToggle.performed += ctx => CharacterController.ToggleAnchor();
 
         _fireLeftCannon.Enable();
         _fireRightCannon.Enable();
+        _anchorToggle.Enable();
 
         if (CharacterController == null)
             CharacterController = GetComponent<PlayerMovement>();
