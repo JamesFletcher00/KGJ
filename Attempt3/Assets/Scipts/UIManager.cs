@@ -19,6 +19,6 @@ public class UIManager : MonoBehaviour
     // on start button press
     public void startPress()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MainScene");
     }
 }

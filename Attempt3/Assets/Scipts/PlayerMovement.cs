@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float minSpeedMult = 0f;
     [SerializeField] private float maxSpeedMult = 1f;
 
-    private bool isAnchorDropped = false;
+    public bool isAnchorDropped = false;
 
     void Start()
     {

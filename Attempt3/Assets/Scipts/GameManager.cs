@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public int shipLevel;
     public float kills;
     public float power;
-    public Vector3 spawnPnt;
+    public Transform[] spawnPoints;
 
     [Header("Prefabs")]
     public GameObject shipMedium;
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     private GameObject Player;
     private float enemyCount;
-    private float maxEnemy;
+    public float maxEnemy;
 
     public static GameManager Instance;
     // initialise instance
@@ -93,9 +93,11 @@ public class GameManager : MonoBehaviour
     // spawn enemy when below max enemies
     public void spawnEnemy()
     {
-        if (enemyCount < maxEnemy)
+        for (int i = 0; i < spawnPoints.Length && enemyCount < maxEnemy; i++)
         {
-            Instantiate(enemy, spawnPnt, enemy.transform.rotation);
+            Instantiate(enemy, spawnPoints[i].position, spawnPoints[i].rotation);
+            enemyCount++;
         }
     }
+
 }

@@ -164,6 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  chestDrop: {fileID: 0}
+  gameMngr: {fileID: 0}
 --- !u!114 &9200663024597779954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  Player: {fileID: 0}
   firingRange: 15
   fireCooldown: 2
   cannonballPrefab: {fileID: 8023280119884699888, guid: d210ae593b0583f4eb839cd34dc1f0f1, type: 3}
@@ -202,8 +205,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d6ebc91528830194cb69bedbcc2fba5b, type: 3}
   m_Resource: {fileID: 8300000, guid: d6ebc91528830194cb69bedbcc2fba5b, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.022
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Transform target;
+    [SerializeField] private GameObject Player;
     [SerializeField] private float firingRange = 20f;
     [SerializeField] private float fireCooldown = 2f;
     [SerializeField] private GameObject cannonballPrefab;
@@ -18,8 +19,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AudioClip cannonFireClip;
     [SerializeField] private AudioSource audioSource;
 
+    void Start()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     void Update()
     {
+        target = Player.transform;
+
         if (target == null) return;
 
         Vector3 toPlayer = target.position - transform.position;
