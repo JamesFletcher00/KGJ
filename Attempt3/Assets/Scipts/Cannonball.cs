@@ -4,6 +4,8 @@ public class Cannonball : MonoBehaviour
 {
     [SerializeField] private float damage = 25f;
     [SerializeField] private float lifespan = 5f;
+    [SerializeField] private AudioClip hitClip;
+    [SerializeField] private AudioSource audioSource;
     void Start()
     {
         Destroy(gameObject, lifespan);
@@ -17,6 +19,12 @@ public class Cannonball : MonoBehaviour
         {
             targetHealth.TakeDamage(damage);
         }
+
+        if (audioSource != null && hitClip != null)
+        {
+            audioSource.PlayOneShot(hitClip);
+        }
+        
         Destroy(gameObject);
     }
 }

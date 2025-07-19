@@ -10,6 +10,8 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private Transform shipTransform;
 
     [SerializeField] private float cannonForce = 50f;
+    [SerializeField] private AudioClip cannonFireClip;
+    [SerializeField] private AudioSource audioSource;
 
     void Start()
     {
@@ -60,12 +62,16 @@ public class InputHandler : MonoBehaviour
     {
         GameObject cannonball = Instantiate(cannonballPrefab, position, Quaternion.identity);
         Rigidbody rb = cannonball.GetComponent<Rigidbody>();
+
         if (rb != null)
         {
             rb.AddForce(direction.normalized * cannonForce, ForceMode.Impulse);
         }
-
-        Debug.DrawRay(position, direction * 5f, Color.red, 2f); // Should now be visible
+        
+        if (audioSource != null && cannonFireClip != null)
+        {
+            audioSource.PlayOneShot(cannonFireClip);
+        }
     }
 
 }
