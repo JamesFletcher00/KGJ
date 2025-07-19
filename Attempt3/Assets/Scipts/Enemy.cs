@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float lateralAdjustSpeed = 5f;
     [SerializeField] private float alignmentSpeed = 2f;
     [SerializeField] private float distanceTolerance = 5f;
+    [SerializeField] private AudioClip cannonFireClip;
+    [SerializeField] private AudioSource audioSource;
 
     void Update()
     {
@@ -66,6 +68,11 @@ public class Enemy : MonoBehaviour
         if (rb != null)
         {
             rb.AddForce(direction.normalized * cannonForce, ForceMode.Impulse);
+        }
+
+        if (audioSource != null && cannonFireClip != null)
+        {
+            audioSource.PlayOneShot(cannonFireClip);
         }
     }
 }

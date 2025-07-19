@@ -908,14 +908,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1222059511}
-    - target: {fileID: 9200663024597779954, guid: d36d9de74bf52cc48a71e5212639d12a, type: 3}
-      propertyPath: firingRange
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 9200663024597779954, guid: d36d9de74bf52cc48a71e5212639d12a, type: 3}
-      propertyPath: desiredDistance
-      value: 12
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -972,10 +964,6 @@ PrefabInstance:
     - target: {fileID: 2894865237016878237, guid: f9adba4586d6ee9448a27ce08c0aaae8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5259323669890448677, guid: f9adba4586d6ee9448a27ce08c0aaae8, type: 3}
-      propertyPath: cannonForce
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
