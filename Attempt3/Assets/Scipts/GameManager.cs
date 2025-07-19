@@ -8,19 +8,24 @@ public class GameManager : MonoBehaviour
     public int shipLevel;
     public float kills;
     public float power;
+    public Vector3 spawnPnt;
 
     [Header("Prefabs")]
     public GameObject shipMedium;
     public GameObject shipLarge;
+    public GameObject enemy;
 
     [Header("UI")]
     public TMP_Text killsText;
     public TMP_Text powerText;
+    public TMP_Text coinText;
 
     private GameObject Player;
+    private float enemyCount;
+    private float maxEnemy;
 
     public static GameManager Instance;
-
+    // initialise instance
     void Awake()
     {
         Instance = this;
@@ -32,6 +37,11 @@ public class GameManager : MonoBehaviour
         coin = 0;
         shipLevel = 0;
         Player = GameObject.FindGameObjectWithTag("Player");
+    }
+    //Update runs each frame
+    void Update()
+    {
+        spawnEnemy();
     }
     // run on button press to buy ship
     public void buyShip(int ship, float cost)
@@ -77,5 +87,15 @@ public class GameManager : MonoBehaviour
     {
         kills++;
         power += 5;
+        // update enemy count
+        enemyCount--;
+    }
+    // spawn enemy when below max enemies
+    public void spawnEnemy()
+    {
+        if (enemyCount < maxEnemy)
+        {
+            Instantiate(enemy, spawnPnt, enemy.transform.rotation);
+        }
     }
 }
