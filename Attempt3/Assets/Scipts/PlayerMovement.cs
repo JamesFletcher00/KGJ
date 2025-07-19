@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController _characterController;
-    public float MovementSpeed = 10, RotationSpeed = 50f;
+    public float MovementSpeed = 10f, RotationSpeed = 10f;
     private float currentSpeedMult = 1f;
     [SerializeField] private float accelerationRate = 0.2f;
     [SerializeField] private float minSpeedMult = 0f;
