@@ -9,12 +9,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float minSpeedMult = 0f;
     [SerializeField] private float maxSpeedMult = 1f;
 
-    private bool isAnchorDropped;
+    private bool isAnchorDropped = false;
 
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
-        isAnchorDropped = true;
     }
 
     public void ToggleAnchor()
