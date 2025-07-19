@@ -9,7 +9,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private Transform rightCannonSpawn;
     [SerializeField] private Transform shipTransform;
 
-    [SerializeField] private float cannonForce = 500f;
+    [SerializeField] private float cannonForce = 50f;
 
     void Start()
     {
@@ -62,7 +62,7 @@ public class InputHandler : MonoBehaviour
         Rigidbody rb = cannonball.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.AddForce(direction.normalized * cannonForce);
+            rb.AddForce(direction.normalized * cannonForce, ForceMode.Impulse);
         }
 
         Debug.DrawRay(position, direction * 5f, Color.red, 2f); // Should now be visible
