@@ -3,34 +3,39 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController _characterController;
-    private float MovementSpeed = 10, RotationSpeed = 5f, JumpForce = 10f, Gravity = -30f;
-    private float _rotationY;
-    private float _verticalVelocity;
+    public float MovementSpeed = 10f, RotationSpeed = 10f;
+    private float currentSpeedMult = 1f;
+    [SerializeField] private float accelerationRate = 0.2f;
+    [SerializeField] private float minSpeedMult = 0f;
+    [SerializeField] private float maxSpeedMult = 1f;
+
+    private bool isAnchorDropped;
 
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        isAnchorDropped = true;
     }
 
-    public void Move(Vector2 movementVector)
+    public void ToggleAnchor()
     {
-        Vector3 move = transform.forward * movementVector.y + transform.right * movementVector.x;
-        move = move * MovementSpeed * Time.deltaTime;
+        isAnchorDropped = !isAnchorDropped;
+    }
+
+    public void Move()
+    {
+        // Smoothly increase or decrease speed based on anchor state
+        float target = isAnchorDropped ? minSpeedMult : maxSpeedMult;
+        currentSpeedMult = Mathf.MoveTowards(currentSpeedMult, target, accelerationRate * Time.deltaTime);
+
+        Vector3 move = transform.forward * MovementSpeed * currentSpeedMult * Time.deltaTime;
         _characterController.Move(move);
+    }
 
-        _verticalVelocity = _verticalVelocity + Gravity * Time.deltaTime;
-        _characterController.Move(new Vector3(0, _verticalVelocity, 0) * Time.deltaTime);
-    }
-    public void Rotate(Vector2 rotationVector)
+    public void Rotate(float rotationInput)
     {
-        _rotationY += rotationVector.x * RotationSpeed * Time.deltaTime;
-        transform.localRotation = Quaternion.Euler(0, _rotationY, 0);
+        float rotationAmount = rotationInput * RotationSpeed * Time.deltaTime;
+        transform.Rotate(0, rotationAmount, 0);
     }
-    public void Jump()
-    {
-        if (_characterController.isGrounded)
-        {
-            _verticalVelocity = JumpForce;
-        }
-    }
+
 }
