@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void ToggleAnchor()
     {
+        //anchor = GameObject.FindGameObjectWithTag("Anchor");
         isAnchorDropped = !isAnchorDropped;
+        GameManager.Instance.anchorDis();
     }
 
     public void Move()

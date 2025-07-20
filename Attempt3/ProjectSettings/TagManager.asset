@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ShopTrigger
   - Safe
+  - Anchor
   layers:
   - Default
   - TransparentFX

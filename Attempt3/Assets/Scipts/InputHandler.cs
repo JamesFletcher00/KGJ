@@ -47,6 +47,7 @@ public class InputHandler : MonoBehaviour
 
         CharacterController.Rotate(horizontalInput);
         CharacterController.Move(); // Always move forward
+
     }
 
     private void FireLeft()

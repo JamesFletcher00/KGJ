@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public TMP_Text killsText;
     public TMP_Text powerText;
     public TMP_Text coinText;
+    public GameObject tutorial;
+    public CameraController camControl;
+    public GameObject anchor;
 
     public GameObject Player;
     private float enemyCount;
@@ -39,6 +42,7 @@ public class GameManager : MonoBehaviour
         coin = 0;
         shipLevel = 0;
         Player = GameObject.FindGameObjectWithTag("Player");
+        StartCoroutine(HidePopUp(tutorial));
     }
     //Update runs each frame
     void Update()
@@ -69,6 +73,7 @@ public class GameManager : MonoBehaviour
         }
         Destroy(Player);
         setPlayer();
+        camControl.updatePlayer();
     }
     // increase coin when collecting chest
     public void getCoin(float amt)
@@ -116,5 +121,22 @@ public class GameManager : MonoBehaviour
         Debug.Log("Waiting");
         yield return new WaitForSeconds(2f);
     }
-
+    //hide popups
+    IEnumerator HidePopUp(GameObject text)
+    {
+        yield return new WaitForSecondsRealtime(5f);//this waits for the popup duration value
+        text.SetActive(false);//hides popup
+    }
+    // anchor display
+    public void anchorDis()
+    {
+        if (!anchor.activeSelf)
+        {
+            anchor.SetActive(true);
+        }
+        else
+        {
+            anchor.SetActive(false);
+        }
+    }
 }

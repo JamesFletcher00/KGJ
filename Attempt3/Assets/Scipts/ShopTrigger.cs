@@ -7,14 +7,14 @@ public class ShopTrigger : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && CharacterController.isAnchorDropped)
+        if (other.gameObject.CompareTag("Safe") && CharacterController.isAnchorDropped)
         {
             upgradeButton.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Safe"))
         {
             upgradeButton.SetActive(false);
         }

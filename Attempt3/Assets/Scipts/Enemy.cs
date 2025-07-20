@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        Player = GameManager.Instance.Player;
         target = Player.transform;
 
         if (target == null) return;
