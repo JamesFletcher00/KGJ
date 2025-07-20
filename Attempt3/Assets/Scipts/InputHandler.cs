@@ -32,6 +32,7 @@ public class InputHandler : MonoBehaviour
             CharacterController = GetComponent<PlayerMovement>();
 
         Cursor.visible = false;
+
     }
 
     void Update()

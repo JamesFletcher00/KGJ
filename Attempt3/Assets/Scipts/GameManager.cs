@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     public float kills;
     public float power;
     public Transform[] spawnPoints;
+    private int nextShip = 1;
 
     [Header("Prefabs")]
     public GameObject shipMedium;
@@ -20,7 +22,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text powerText;
     public TMP_Text coinText;
 
-    private GameObject Player;
+    public GameObject Player;
     private float enemyCount;
     public float maxEnemy;
 
@@ -44,13 +46,14 @@ public class GameManager : MonoBehaviour
         spawnEnemy();
     }
     // run on button press to buy ship
-    public void buyShip(int ship, float cost)
+    public void buyShip()
     {
-        if (shipLevel != ship && coin >= cost)
+        if (shipLevel != nextShip && coin >= 50)
         {
-            shipLevel = ship;
-            loseCoin(cost);
+            shipLevel = nextShip;
+            loseCoin(50);
             setShip();
+            nextShip = 2;
         }
     }
     // set ship type, instantiate in new prefab
@@ -71,6 +74,8 @@ public class GameManager : MonoBehaviour
     public void getCoin(float amt)
     {
         coin += amt;
+        Debug.Log("Coin: " + coin);
+        coinText.text = coin.ToString();
     }
     // lost coin when spending
     public void loseCoin(float amt)
@@ -89,15 +94,27 @@ public class GameManager : MonoBehaviour
         power += 5;
         // update enemy count
         enemyCount--;
+        killsText.text = kills.ToString();
     }
     // spawn enemy when below max enemies
     public void spawnEnemy()
     {
-        for (int i = 0; i < spawnPoints.Length && enemyCount < maxEnemy; i++)
+        if (enemyCount < maxEnemy)
         {
-            Instantiate(enemy, spawnPoints[i].position, spawnPoints[i].rotation);
-            enemyCount++;
+            StartCoroutine(spawnDelay());
+            for (int i = 0; i < spawnPoints.Length && enemyCount < maxEnemy; i++)
+            {
+                Instantiate(enemy, spawnPoints[i].position, spawnPoints[i].rotation);
+                enemyCount++;
+            }
+            Debug.Log("Enemy spawned");
         }
+    }
+    //spawn delay
+    IEnumerator spawnDelay()
+    {
+        Debug.Log("Waiting");
+        yield return new WaitForSeconds(2f);
     }
 
 }

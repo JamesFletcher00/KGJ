@@ -13,7 +13,7 @@ public class Cannonball : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Health targetHealth = collision.gameObject.GetComponent<Health>();
+        EnemyHealth targetHealth = collision.gameObject.GetComponent<EnemyHealth>();
 
         if (targetHealth != null)
         {

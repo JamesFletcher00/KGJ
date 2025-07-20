@@ -13,8 +13,9 @@ public class Chest : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player")) 
         {
+            Debug.Log("Player Entered");
             gameMng.getCoin(5);
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }

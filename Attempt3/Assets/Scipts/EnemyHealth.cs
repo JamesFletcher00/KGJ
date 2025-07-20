@@ -4,16 +4,19 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
     private float currentHealth;
-    [SerializeField] private GameObject chestDrop;
-    [SerializeField] private GameManager gameMngr;
+    public GameObject chestDrop;
+    private GameManager gameMngr;
+
     void Start()
     {
         currentHealth = maxHealth;
+        gameMngr = GameManager.Instance;
     }
 
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
+        Debug.Log("Enemy Health" + currentHealth);
 
         if (currentHealth <= 0f)
         {

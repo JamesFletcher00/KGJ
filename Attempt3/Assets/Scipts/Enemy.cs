@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameManager.Instance.Player;
     }
 
     void Update()

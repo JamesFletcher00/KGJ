@@ -164,8 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  chestDrop: {fileID: 0}
-  gameMngr: {fileID: 0}
+  chestDrop: {fileID: 8557443728062106443, guid: 0c59c20b18cdde348bbb5141a659f169, type: 3}
 --- !u!114 &9200663024597779954
 MonoBehaviour:
   m_ObjectHideFlags: 0
